@@ -46,7 +46,7 @@ run: all
 ${NAME}: ${OBJS}
 	@echo "\033[33m----Compiling lib----"
 	@make re -C ./libft
-	@cc $(FLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS)
+	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
 	@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n\e[0m"
 
 $(MLX_LIB):

@@ -6,10 +6,24 @@ OBJS = ${SRCS:.c=.o}
 
 FLAGS = -Wall -Wextra -Werror -g
 
-.c.o: %.o : %.c
-	@cc ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+ifeq ($(shell uname), Linux)
+	INCLUDES = -I/usr/include -Imlx
+else
+	INCLUDES = -I/opt/X11/include -Imlx
+endif
 
-all: ${NAME}
+MLX_DIR = ./mlx
+MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+ifeq ($(shell uname), Linux)
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+else
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+endif
+
+.c.o: %.o : %.c
+	@cc ${FLAGS} -c $< -o $@ $(INCLUDES)
+
+all: $(MLX_LIB) ${NAME}
 
 install:
 	python3 -m pip install --upgrade pip setuptools
@@ -28,8 +42,11 @@ run: all
 ${NAME}: ${OBJS}
 	@echo "\033[33m----Compiling lib----"
 	@make re -C ./libft
-	@cc $(FLAGS) ${OBJS} -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@cc $(FLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS)
 	@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n\e[0m"
+
+$(MLX_LIB):
+	@make -C $(MLX_DIR)
 
 clean:
 	@make clean -C ./libft

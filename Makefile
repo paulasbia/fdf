@@ -6,6 +6,25 @@ OBJS = ${SRCS:.c=.o}
 
 FLAGS = -Wall -Wextra -Werror -g
 
+ifeq ($(shell uname), Linux)
+	INCLUDES = -I/usr/include -Imlx_linux
+else
+	INCLUDES = -I/opt/X11/include -Imlx
+endif
+
+MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+ifeq ($(shell uname), Linux)
+	MLX_DIR = ./mlx_linux
+	MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+else
+	MLX_DIR = ./mlx
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+endif
+
+#INCLUDES = -I/opt/X11/include -Imlx
+
+#MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+
 .c.o: %.o : %.c
 	@cc ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
@@ -28,7 +47,7 @@ run: all
 ${NAME}: ${OBJS}
 	@echo "\033[33m----Compiling lib----"
 	@make re -C ./libft
-	@cc $(FLAGS) ${OBJS} -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
 	@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n\e[0m"
 
 clean:

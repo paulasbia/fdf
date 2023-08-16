@@ -6,7 +6,7 @@
 /*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/16 15:32:34 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/16 21:23:03 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,6 @@ int	handle_keypress(int keysym, t_data *data)
 	if (keysym == K_ESC)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		//mlx_destroy_image(data->mlx_ptr, NULL);
-		//mlx_destroy_display(data->mlx_ptr);
-		//data->win_ptr = NULL;
 		free(data->mlx_ptr);
 		exit (0);
 	}
@@ -188,11 +185,6 @@ int	handle_keypress(int keysym, t_data *data)
 
 int	render(t_data *data)
 {
-	// /* if window has been destroyed, we don't want to put the pixel ! */
-	// if (data->win_ptr != NULL)
-	// 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, WINDOW_WIDTH / 2,
-	// 		WINDOW_HEIGHT / 2, RED_PIXEL);
-	// return (0);
 	render_rect(data, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100,
 		100, GREEN_PIXEL});
 	render_rect(data, (t_rect){0, 0, 100, 100, RED_PIXEL});

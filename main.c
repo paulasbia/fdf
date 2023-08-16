@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/16 13:53:00 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:17:06 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_line(int x, int y, t_data *img)
+int	draw_line(int x, int y, t_data *img)
 {
 	while (x < 50)
 	{
 		my_mlx_pixel_put(img, x, y, 0x00FF00AA);
 		x++;
 	}
+	return (0);
 }
 
 int	main(void)
@@ -95,6 +96,7 @@ int	main(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	draw_line(test, 100, &img);
+	//mlx_loop_hook(mlx, &draw_line, mlx);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_hook(mlx_win, KeyPress, KeyPressMask, &handle_keypress, mlx);
 	mlx_loop(mlx);

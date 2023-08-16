@@ -6,12 +6,16 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/16 12:26:47 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:53:00 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "mlx.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 300
@@ -34,7 +38,8 @@
 //     void	*win_ptr;
 
 //     mlx_ptr = mlx_init();
-//     win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My first window!");
+//     win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+//		"My first window!");
 //     mlx_destroy_window(mlx_ptr, win_ptr);
 //     mlx_destroy_display(mlx_ptr);
 //     free(mlx_ptr);
@@ -48,6 +53,16 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }			t_data;
+
+int	handle_keypress(int keysym, void *mlx, void *win)
+{
+	if (keysym == XK_Escape)
+	{
+		mlx_destroy_window(mlx, win);
+		win = NULL;
+	}
+	return (0);
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -79,9 +94,10 @@ int	main(void)
 	img.img = mlx_new_image(mlx, WINDOW_HEIGHT, WINDOW_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	ft_printf("valor bpp: %d, line_length %d and endian %d\n", 
-		img.bits_per_pixel, img.line_length, img.endian);
 	draw_line(test, 100, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_hook(mlx_win, KeyPress, KeyPressMask, &handle_keypress, mlx);
 	mlx_loop(mlx);
+	mlx_destroy_display(mlx);
+	free(mlx);
 }

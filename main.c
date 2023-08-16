@@ -3,22 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/16 14:27:14 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:32:34 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "mlx.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
+//#include <X11/X.h>
+//#include <X11/keysym.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 300
+
+//MAC KEYS
+# define K_ESC					53
+# define K_UP					13
+# define K_LEFT					0
+# define K_RIGHT				2
+# define K_DOWN					1
+# define A_UP					0x7E
+# define A_DOWN					0x7D
+# define A_LEFT					0x7B
+# define A_RIGHT				0x7C
+
+/* LINUX KEYS */
+/*# define K_ESC 65307
+# define K_UP 119
+# define K_LEFT 97
+# define K_RIGHT 100
+# define K_DOWN 115
+# define A_UP 65362
+# define A_DOWN 65364
+# define A_LEFT 65361
+# define A_RIGHT 65363
+*/
 
 // int	main(void)
 // {
@@ -151,10 +174,14 @@ int	render_rect(t_data *data, t_rect rect)
 
 int	handle_keypress(int keysym, t_data *data)
 {
-	if (keysym == XK_Escape)
+	if (keysym == K_ESC)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
+		//mlx_destroy_image(data->mlx_ptr, NULL);
+		//mlx_destroy_display(data->mlx_ptr);
+		//data->win_ptr = NULL;
+		free(data->mlx_ptr);
+		exit (0);
 	}
 	return (0);
 }
@@ -188,9 +215,9 @@ int	main(void)
 	}
 	/* Setup hooks */
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+	mlx_key_hook(data.win_ptr, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	/* we will exit the loop if there's no window left, and execute this code */
-	mlx_destroy_display(data.mlx_ptr);
+	mlx_destroy_image(data.mlx_ptr, NULL);
 	free(data.mlx_ptr);
 }

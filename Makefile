@@ -6,6 +6,11 @@ OBJS = ${SRCS:.c=.o}
 
 FLAGS = -Wall -Wextra -Werror -g
 
+COLOUR_GREEN=\033[32m
+COLOUR_RED=\033[31m
+COLOUR_END=\033[0m
+
+
 ifeq ($(shell uname), Linux)
 	INCLUDES = -I/usr/include -Imlx_linux
 else
@@ -48,16 +53,17 @@ ${NAME}: ${OBJS}
 	@echo "\033[33m----Compiling lib----"
 	@make re -C ./libft
 	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
-	@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n\e[0m"
+	@echo "$(COLOUR_GREEN)fdf Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
 
 clean:
 	@make clean -C ./libft
 	@rm -f ${OBJS}
+	@echo "$(COLOUR_RED)Removed OBJECT FILES\n$(COLOUR_END)"
 
 fclean: clean
 	@make fclean -C ./libft
 	@rm -f ${NAME}
-	@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n\e[0m"
+	@echo "$(COLOUR_RED)Deleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n$(COLOUR_END)"
 
 re:			fclean all
 

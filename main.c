@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/16 21:23:03 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/17 09:32:43 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@
 #define WINDOW_HEIGHT 300
 
 //MAC KEYS
-# define K_ESC					53
-# define K_UP					13
-# define K_LEFT					0
-# define K_RIGHT				2
-# define K_DOWN					1
-# define A_UP					0x7E
-# define A_DOWN					0x7D
-# define A_LEFT					0x7B
-# define A_RIGHT				0x7C
+// # define K_ESC					53
+// # define K_UP					13
+// # define K_LEFT					0
+// # define K_RIGHT				2
+// # define K_DOWN					1
+// # define A_UP					0x7E
+// # define A_DOWN					0x7D
+// # define A_LEFT					0x7B
+// # define A_RIGHT				0x7C
 
 /* LINUX KEYS */
-/*# define K_ESC 65307
+# define K_ESC 65307
 # define K_UP 119
 # define K_LEFT 97
 # define K_RIGHT 100
@@ -41,7 +41,7 @@
 # define A_DOWN 65364
 # define A_LEFT 65361
 # define A_RIGHT 65363
-*/
+
 
 // int	main(void)
 // {

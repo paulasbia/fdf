@@ -58,7 +58,6 @@ ${NAME}: ${OBJS}
 clean:
 	@make clean -C ./libft
 	@rm -f ${OBJS}
-	@echo "$(COLOUR_RED)Removed OBJECT FILES\n$(COLOUR_END)"
 
 fclean: clean
 	@make fclean -C ./libft

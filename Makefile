@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRCS = main.c
+SRCS = teste.c
 
 OBJS = ${SRCS:.c=.o}
 

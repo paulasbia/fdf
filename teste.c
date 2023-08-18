@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/17 11:37:11 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:55:45 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 300
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 700
 
 #define RED_PIXEL 0xFF0000
 #define GREEN_PIXEL 0xFF00
 #define WHITE_PIXEL 0xFFFFFF
 
 //MAC KEYS
-// # define K_ESC					53
-// # define K_UP					13
-// # define K_LEFT					0
-// # define K_RIGHT				2
-// # define K_DOWN					1
-// # define A_UP					0x7E
-// # define A_DOWN					0x7D
-// # define A_LEFT					0x7B
-// # define A_RIGHT				0x7C
+# define K_ESC					53
+# define K_UP					13
+# define K_LEFT					0
+# define K_RIGHT				2
+# define K_DOWN					1
+# define A_UP					0x7E
+# define A_DOWN					0x7D
+# define A_LEFT					0x7B
+# define A_RIGHT				0x7C
 
 /* LINUX KEYS */
-#define K_ESC 65307
+/* #define K_ESC 65307
 #define K_UP 119
 #define K_LEFT 97
 #define K_RIGHT 100
@@ -45,6 +45,7 @@
 #define A_DOWN 65364
 #define A_LEFT 65361
 #define A_RIGHT 65363
+*/
 
 //create a window and destroy it, than we don`t have any leak
 // int main(void)
@@ -233,6 +234,23 @@ int	render(t_data *data)
 int	main(void)
 {
 	t_data	data;
+	int		fd;
+	char	*line;
+
+	fd = open("teste.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf(" line 1 %s\n\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf(" line 2 %s\n\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf(" line 3 %s\n\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf(" line 4 %s\n\n", line);
+	printf("parou\n");
+	free(line);
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)

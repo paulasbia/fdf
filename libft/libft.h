@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:05:20 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/05/08 19:52:15 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/18 10:49:38 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "gnl/get_next_line.h" 
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);

@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRCS = teste.c
+SRCS = fdf.c error.c
 
 OBJS = ${SRCS:.c=.o}
 

@@ -6,15 +6,15 @@
 /*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/18 15:59:57 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/18 16:34:38 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "libft/libft.h"
-# include "mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include <math.h>
 
 //# include <stdio.h>
@@ -68,6 +68,11 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 }			t_data;
+
+
+void    check_av(int ac, char **av);
+void	exit_error(const char *msg);
+void	error(void);
 
 #endif
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/22 13:03:46 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/22 13:40:44 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ typedef struct s_data
 void    check_av(int ac, char **av);
 void	exit_error(const char *msg);
 void	error(void);
-void    read_maps(t_data *fdf, int fd);
+void    read_maps(t_data *fdf, char *file);
 void    fill_matrix(int *z_line, char *line);
 int		ft_wordc(const char *str, char c);
-int 	get_width(int fd);
-int 	get_height(int fd);
+int 	get_width(char *file);
+int 	get_height(char *file);
 
 #endif
 

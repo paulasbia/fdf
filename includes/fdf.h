@@ -6,7 +6,7 @@
 /*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/18 16:34:38 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/22 13:03:46 by paulabiazot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ typedef struct s_img
 
 typedef struct s_data
 {
+	int		heigth;
+	int		width;
+	int		**z_matrix;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
@@ -73,6 +76,11 @@ typedef struct s_data
 void    check_av(int ac, char **av);
 void	exit_error(const char *msg);
 void	error(void);
+void    read_maps(t_data *fdf, int fd);
+void    fill_matrix(int *z_line, char *line);
+int		ft_wordc(const char *str, char c);
+int 	get_width(int fd);
+int 	get_height(int fd);
 
 #endif
 

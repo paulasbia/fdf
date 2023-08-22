@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRCS = fdf.c error.c
+SRCS = fdf.c error.c read_map.c
 
 OBJS = ${SRCS:.c=.o}
 

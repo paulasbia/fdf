@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/22 15:59:00 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:43:51 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	check_av(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_data *fdf;
-	int     i;
-	int     j;
+	t_data	*fdf;
+	int		i;
+	int		j;
 
 	check_av(ac, av);
 	fdf = (t_data *)malloc(sizeof(t_data));
@@ -38,7 +38,6 @@ int	main(int ac, char **av)
 		printf("deu ruim\n\n");
 		error();
 	}
-	printf("vai ler\n\n");
 	read_maps(fdf, av[1]);
 	i = 0;
 	while (i < fdf->heigth)

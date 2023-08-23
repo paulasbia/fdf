@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/23 09:43:15 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:28:39 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	get_height(char *file)
 	height = 0;
 	while (line)
 	{
+		free(line);
 		line = get_next_line(fd);
 		height++;
-		free(line);
 	}
 	close(fd);
 	return (height);
@@ -57,9 +57,7 @@ int	ft_wordc(const char *str, char c)
 	while (*str != 0)
 	{
 		if (*str != c && (*(str + 1) == c || *(str + 1) == 0))
-		{
 			count++;
-		}
 		str++;
 	}
 	return (count);
@@ -78,6 +76,7 @@ void	fill_matrix(int *z_line, char *line)
 		free(num[i]);
 		i++;
 	}
+	free(line);
 	free(num);
 }
 
@@ -101,8 +100,8 @@ void	read_maps(t_data *fdf, char *file)
 	while (line)
 	{
 		fill_matrix(fdf->z_matrix[i], line);
-		i++;
 		line = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 	fdf->z_matrix[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/23 10:28:39 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:13:11 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	get_height(char *file)
 		height++;
 	}
 	close(fd);
+	printf("heigth %d\n", height);
 	return (height);
 }
 
@@ -46,6 +47,7 @@ int	get_width(char *file)
 	width = ft_wordc(line, ' ');
 	free(line);
 	close(fd);
+	printf("width %d\n", width);
 	return (width);
 }
 
@@ -92,7 +94,7 @@ void	read_maps(t_data *fdf, char *file)
 	if (!fdf->z_matrix)
 		error();
 	i = 0;
-	while (i <= fdf->heigth)
+	while (i <= fdf->heigth - 1)
 		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
 	fd = open(file, O_RDONLY, 0);
 	line = get_next_line(fd);

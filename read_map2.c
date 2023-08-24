@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/24 14:02:47 by paula            ###   ########.fr       */
+/*   Created: 2023/08/24 13:06:21 by paula             #+#    #+#             */
+/*   Updated: 2023/08/24 13:29:52 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-int	get_height(char *file)
+t_data **memory_allocate(char *file)
 {
-	char	*line;
-	int		height;
-	int		fd;
+    int fd;
+    char    *line;
+    int x;
+    int y;
+    t_data  **matrix;
 
-	fd = open(file, O_RDONLY, 0777);
-	line = get_next_line(fd);
-	printf("em height linha:\n%s\n", line);
-	if (line == 0)
-		return (-1);
-	height = 0;
-	while (line)
-	{
-		height++;
-		printf("height: %d\n", height);
-		free(line);
-		line = get_next_line(fd);
-		printf("next line:\n%s\n", line);
-	}
-	close(fd);
-	printf("heigth %d\n", height);
-	return (height);
+    fd = open(file, O_RDONLY, 0);
+    if (fd < 0)
+        error();
+    line = get_next_line(fd);
+    x = ft_wordc(line, ' ');
+    y = 0;
+    while (line)
+    {
+       y++;
+       free(line);
+       line = get_next_line(fd);
+    }
+    matrix = (t_data **)malloc(sizeof(t_data *) * (y + 1));
+    while (y > 0)
+        matrix[--y] = (t_data *)malloc(sizeof(t_data) * (x + 1));
+    close(fd);
+    return(matrix);
 }
 
 int	ft_wordc(const char *str, char c)
@@ -57,6 +59,7 @@ void	fill_matrix(int *z_line, char *line)
 	int		i;
 
 	num = ft_split(line, ' ');
+	printf("em matrix line eh\n%s", line);
 	i = 0;
 	while (num[i])
 	{
@@ -71,28 +74,25 @@ void	fill_matrix(int *z_line, char *line)
 
 void	read_maps(t_data *fdf, char *file)
 {
-	char	*line;
-	int		i;
-	int		fd;
+    int i;
+    char    *line;
+    int     fd;
+    t_data  **matrix;
 
-	fdf->heigth = get_height(file);
-	fdf->z_matrix = (int **)malloc(sizeof(int *) * (fdf->heigth + 1));
-	if (!fdf->z_matrix)
-		error();
-	fd = open(file, O_RDONLY, 0);
-	line = get_next_line(fd);
-	fdf->width = ft_wordc(line, ' ');
-	i = 0;
-	while (i <= fdf->heigth - 1)
-		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
-	i = 0;
-	while (line)
-	{
-		fill_matrix(fdf->z_matrix[i], line);
+    matrix = memory_allocate(file);
+    fd = open(file, O_RDONLY, 0);
+    line = get_next_line(fd);
+    if (fd > 0)
+        error();
+    i = 0;
+    while (line)
+    {
+        fill_matrix(fdf->z_matrix[i], line);
 		line = get_next_line(fd);
 		i++;
-	}
-	free(line);
-	fdf->z_matrix[i] = 0;
-	close(fd);
+    }
+    free(line);
+    fdf->z_matrix[i] = NULL;
+    close(fd);
+    return(matrix);
 }

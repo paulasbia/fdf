@@ -4,7 +4,7 @@ SRCS = fdf.c error.c read_map.c
 
 OBJS = ${SRCS:.c=.o}
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m
@@ -67,7 +67,6 @@ fclean: clean
 re:			fclean all
 
 valgrind: clean fclean all
-	rm -f $(OBJS) $(NAME)
-	valgrind --leak-check=full ./result.out
+	valgrind --leak-check=full ./fdf ./maps/42maps/basictest.fdf 
 
 .PHONY: all clean fclean re 

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/24 14:02:47 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/24 18:23:15 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	read_maps(t_data *fdf, char *file)
 	line = get_next_line(fd);
 	fdf->width = ft_wordc(line, ' ');
 	i = 0;
-	while (i <= fdf->heigth - 1)
+	while (i < fdf->heigth)
 		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
 	i = 0;
 	while (line)
@@ -92,7 +92,6 @@ void	read_maps(t_data *fdf, char *file)
 		line = get_next_line(fd);
 		i++;
 	}
-	free(line);
-	fdf->z_matrix[i] = 0;
+	fdf->z_matrix[i] = NULL;
 	close(fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/23 11:52:29 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:29:57 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void	check_av(int ac, char **av)
 		exit_error("ERROR - Please enter whith one, and just one, argument\n");
 }
 
+void	free_matrix(t_data *fdf)
+{
+	int	i;
+
+	i = 0;
+	while (fdf->z_matrix[i])
+	{
+		free(fdf->z_matrix[i]);
+		i++;
+	}
+	free(fdf->z_matrix);
+	free(fdf);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*fdf;
@@ -33,6 +47,7 @@ int	main(int ac, char **av)
 
 	check_av(ac, av);
 	fdf = (t_data *)malloc(sizeof(t_data));
+	printf("sizeof de t_data eh: %ld\n", sizeof(t_data));
 	if (!fdf)
 	{
 		printf("deu ruim\n\n");
@@ -51,4 +66,5 @@ int	main(int ac, char **av)
 		ft_printf("\n");
 		i++;
 	}
+	free_matrix(fdf);
 }

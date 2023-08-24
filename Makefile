@@ -68,5 +68,6 @@ re:			fclean all
 
 valgrind: clean fclean all
 	valgrind --leak-check=full ./fdf ./maps/42maps/basictest.fdf 
+	valgrind --leak-check=full ./fdf ./maps/42maps/plat.fdf 
 
 .PHONY: all clean fclean re 

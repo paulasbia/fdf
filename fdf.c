@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/25 12:11:56 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:16:21 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	check_av(int ac, char **av)
 	if (ac == 2)
 	{
 		if (ft_strncmp(&av[1][ft_strlen(av[1]) - 4], ".fdf", 4))
-		{
 			exit_error("[fdf] ERROR - Invalid file extension");
-		}
 	}
 	else
 		exit_error("ERROR - Please enter whith one, and just one, argument\n");

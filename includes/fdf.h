@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/24 13:44:35 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,19 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-}			t_data;
+}			t_map;
 
 
 void    check_av(int ac, char **av);
 void	exit_error(const char *msg);
 void	error(void);
-void    read_maps(t_data *fdf, char *file);
+void    read_maps(t_map *fdf, char *file);
 void    fill_matrix(int *z_line, char *line);
 int		ft_wordc(const char *str, char c);
 int 	get_width(char *file);
 int 	get_height(char *file);
+void    bresenham_line(float x, float x1, float y, float y1, t_map *fdf);
+
 
 #endif
 

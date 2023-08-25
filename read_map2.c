@@ -6,19 +6,19 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:06:21 by paula             #+#    #+#             */
-/*   Updated: 2023/08/24 13:29:52 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-t_data **memory_allocate(char *file)
+t_map **memory_allocate(char *file)
 {
     int fd;
     char    *line;
     int x;
     int y;
-    t_data  **matrix;
+    t_map  **matrix;
 
     fd = open(file, O_RDONLY, 0);
     if (fd < 0)
@@ -32,9 +32,9 @@ t_data **memory_allocate(char *file)
        free(line);
        line = get_next_line(fd);
     }
-    matrix = (t_data **)malloc(sizeof(t_data *) * (y + 1));
+    matrix = (t_map **)malloc(sizeof(t_map *) * (y + 1));
     while (y > 0)
-        matrix[--y] = (t_data *)malloc(sizeof(t_data) * (x + 1));
+        matrix[--y] = (t_map *)malloc(sizeof(t_map) * (x + 1));
     close(fd);
     return(matrix);
 }
@@ -72,12 +72,12 @@ void	fill_matrix(int *z_line, char *line)
 	free(num);
 }
 
-void	read_maps(t_data *fdf, char *file)
+void	read_maps(t_map *fdf, char *file)
 {
     int i;
     char    *line;
     int     fd;
-    t_data  **matrix;
+    t_map  **matrix;
 
     matrix = memory_allocate(file);
     fd = open(file, O_RDONLY, 0);

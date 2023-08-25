@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/18 15:55:45 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 // 	int		bits_per_pixel;
 // 	int		line_length;
 // 	int		endian;
-// }			t_data;
+// }			t_map;
 
 // int	handle_keypress(int keysym, void *mlx, void *win)
 // {
@@ -83,7 +83,7 @@
 // 	return (0);
 // }
 
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// void	my_mlx_pixel_put(t_map *data, int x, int y, int color)
 // {
 // 	char	*dst;
 
@@ -91,7 +91,7 @@
 // 	*(unsigned int *)dst = color;
 // }
 
-// int	draw_line(int x, int y, t_data *img, void *mlx, void *win)
+// int	draw_line(int x, int y, t_map *img, void *mlx, void *win)
 // {
 // 	while (x < 50)
 // 	{
@@ -104,7 +104,7 @@
 
 // int	main(void)
 // {
-// 	t_data	img;
+// 	t_map	img;
 // 	void	*mlx;
 // 	void	*mlx_win;
 // 	int		test;
@@ -143,7 +143,7 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-}			t_data;
+}			t_map;
 
 typedef struct s_rect
 {
@@ -207,7 +207,7 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-int	handle_keypress(int keysym, t_data *data)
+int	handle_keypress(int keysym, t_map *data)
 {
 	if (keysym == K_ESC)
 	{
@@ -218,7 +218,7 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int	render(t_data *data)
+int	render(t_map *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
@@ -233,7 +233,7 @@ int	render(t_data *data)
 
 int	main(void)
 {
-	t_data	data;
+	t_map	data;
 	int		fd;
 	char	*line;
 

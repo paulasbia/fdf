@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/24 18:23:15 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	fill_matrix(int *z_line, char *line)
 	free(num);
 }
 
-void	read_maps(t_data *fdf, char *file)
+void	read_maps(t_map *fdf, char *file)
 {
 	char	*line;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/24 18:29:57 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:11:56 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ void	check_av(int ac, char **av)
 		exit_error("ERROR - Please enter whith one, and just one, argument\n");
 }
 
-void	free_matrix(t_data *fdf)
+int	deal_key(int key, void *data)
+{
+	ft_printf("%d", key);
+	return (0);
+}
+
+void	free_matrix(t_map *fdf)
 {
 	int	i;
 
@@ -39,32 +45,38 @@ void	free_matrix(t_data *fdf)
 	free(fdf);
 }
 
-int	main(int ac, char **av)
+int	main (int ac, char **av)
 {
-	t_data	*fdf;
-	int		i;
-	int		j;
+	t_map	*fdf;
+	// int		i;
+	// int		j;
 
 	check_av(ac, av);
-	fdf = (t_data *)malloc(sizeof(t_data));
-	printf("sizeof de t_data eh: %ld\n", sizeof(t_data));
+	fdf = (t_map *)malloc(sizeof(t_map));
+	printf("sizeof de t_map eh: %ld\n", sizeof(t_map));
 	if (!fdf)
 	{
 		printf("deu ruim\n\n");
 		error();
 	}
 	read_maps(fdf, av[1]);
-	i = 0;
-	while (i < fdf->heigth)
-	{
-		j = 0;
-		while (j < fdf->width)
-		{
-			ft_printf("%d ", fdf->z_matrix[i][j]);
-			j++;
-		}
-		ft_printf("\n");
-		i++;
-	}
-	free_matrix(fdf);
+	// i = 0;
+	// while (i < fdf->heigth)
+	// {
+	// 	j = 0;
+	// 	while (j < fdf->width)
+	// 	{
+	// 		ft_printf("%d ", fdf->z_matrix[i][j]);
+	// 		j++;
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
+	// free_matrix(fdf);
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
+	
+	bresenham_line(10, 10, 600, 300, fdf);
+	mlx_key_hook(fdf->win_ptr, deal_key, NULL);
+	mlx_loop(fdf->mlx_ptr);
 }

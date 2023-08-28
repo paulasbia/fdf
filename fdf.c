@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 17:05:04 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 18:52:51 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ int	main(int ac, char **av)
 	// }
 	// free_matrix(fdf);
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	//	bresenham_line(10, 10, 600, 300, fdf);
-	bresenham_line((t_axis){x:2, y:1, x1:100, y1:200}, fdf);
+	//	bresenham_line((t_axis){x:2, y:1, x1:100, y1:200}, fdf);
+	draw_file(fdf);
 	mlx_key_hook(fdf->win_ptr, deal_key, NULL);
 	mlx_loop(fdf->mlx_ptr);
 }

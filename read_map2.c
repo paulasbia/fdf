@@ -6,37 +6,37 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:06:21 by paula             #+#    #+#             */
-/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 18:55:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-t_map **memory_allocate(char *file)
+t_map	**memory_allocate(char *file)
 {
-    int fd;
-    char    *line;
-    int x;
-    int y;
-    t_map  **matrix;
+	int		fd;
+	char	*line;
+	int		x;
+	int		y;
+	t_map	**matrix;
 
-    fd = open(file, O_RDONLY, 0);
-    if (fd < 0)
-        error();
-    line = get_next_line(fd);
-    x = ft_wordc(line, ' ');
-    y = 0;
-    while (line)
-    {
-       y++;
-       free(line);
-       line = get_next_line(fd);
-    }
-    matrix = (t_map **)malloc(sizeof(t_map *) * (y + 1));
-    while (y > 0)
-        matrix[--y] = (t_map *)malloc(sizeof(t_map) * (x + 1));
-    close(fd);
-    return(matrix);
+	fd = open(file, O_RDONLY, 0);
+	if (fd < 0)
+		error();
+	line = get_next_line(fd);
+	x = ft_wordc(line, ' ');
+	y = 0;
+	while (line)
+	{
+		y++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	matrix = (t_map **)malloc(sizeof(t_map *) * (y + 1));
+	while (y > 0)
+		matrix[--y] = (t_map *)malloc(sizeof(t_map) * (x + 1));
+	close(fd);
+	return (matrix);
 }
 
 int	ft_wordc(const char *str, char c)
@@ -74,25 +74,24 @@ void	fill_matrix(int *z_line, char *line)
 
 void	read_maps(t_map *fdf, char *file)
 {
-    int i;
-    char    *line;
-    int     fd;
-    t_map  **matrix;
+	int i;
+	char *line;
+	int fd;
+	t_map **matrix;
 
-    matrix = memory_allocate(file);
-    fd = open(file, O_RDONLY, 0);
-    line = get_next_line(fd);
-    if (fd > 0)
-        error();
-    i = 0;
-    while (line)
-    {
-        fill_matrix(fdf->z_matrix[i], line);
+	matrix = memory_allocate(file);
+	fd = open(file, O_RDONLY, 0);
+	line = get_next_line(fd);
+	if (fd > 0)
+		error();
+	i = 0;
+	while (line)
+	{
+		fill_matrix(fdf->z_matrix[i], line);
 		line = get_next_line(fd);
 		i++;
-    }
-    free(line);
-    fdf->z_matrix[i] = NULL;
-    close(fd);
-    return(matrix);
+	}
+	free(line);
+	fdf->z_matrix[i] = NULL;
+	close(fd);
 }

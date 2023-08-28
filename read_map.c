@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 18:57:48 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void	read_maps(t_map *fdf, char *file)
 	}
 	fdf->z_matrix[i] = NULL;
 	close(fd);
+	fdf->x_scale = 0.5 * (WINDOW_WIDTH / fdf->width);
+	fdf->y_scale = 0.5 * (WINDOW_HEIGHT / fdf->heigth);
 }

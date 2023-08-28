@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 16:57:35 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 18:50:47 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_data
 	int		heigth;
 	int		width;
 	int		**z_matrix;
+	float	x_scale;
+	float	y_scale;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
@@ -90,5 +92,6 @@ int			ft_wordc(const char *str, char c);
 int			get_width(char *file);
 int			get_height(char *file);
 void		bresenham_line(t_axis axis, t_map *fdf);
+void		draw_file(t_map *fdf);
 
 #endif

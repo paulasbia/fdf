@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 18:50:47 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 18:59:38 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 	int		**z_matrix;
 	float	x_scale;
 	float	y_scale;
+	int		color;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;

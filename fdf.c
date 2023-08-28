@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/25 12:16:21 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:05:04 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,16 @@ void	free_matrix(t_map *fdf)
 	free(fdf);
 }
 
-int	main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_map	*fdf;
+
+	//	t_axis	*axis;
 	// int		i;
 	// int		j;
-
 	check_av(ac, av);
 	fdf = (t_map *)malloc(sizeof(t_map));
+	//	axis = (t_axis *)malloc(sizeof(t_axis));
 	printf("sizeof de t_map eh: %ld\n", sizeof(t_map));
 	if (!fdf)
 	{
@@ -73,8 +75,8 @@ int	main (int ac, char **av)
 	// free_matrix(fdf);
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
-	
-	bresenham_line(10, 10, 600, 300, fdf);
+	//	bresenham_line(10, 10, 600, 300, fdf);
+	bresenham_line((t_axis){x:2, y:1, x1:100, y1:200}, fdf);
 	mlx_key_hook(fdf->win_ptr, deal_key, NULL);
 	mlx_loop(fdf->mlx_ptr);
 }

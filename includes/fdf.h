@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 12:17:17 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 18:52:07 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define FDF_H
 
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+//# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include <math.h>
 
 //# include <stdio.h>
@@ -40,15 +41,15 @@
 // # define A_RIGHT 0x7C
 
 /* LINUX KEYS */
-# define K_ESC                	65307
-# define K_UP                    119
-# define K_LEFT                  97
-# define K_RIGHT                 100
-# define K_DOWN                  115
-# define A_UP                    65362
-# define A_DOWN                  65364
-# define A_LEFT                  65361
-# define A_RIGHT                 65363
+# define K_ESC					65307
+# define K_UP                   119
+# define K_LEFT                 97
+# define K_RIGHT                100
+# define K_DOWN                 115
+# define A_UP                   65362
+# define A_DOWN                 65364
+# define A_LEFT                 65361
+# define A_RIGHT                65363
 
 
 // structs
@@ -74,7 +75,7 @@ typedef struct s_data
 	int		color;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
+	t_img	*img;
 }			t_map;
 
 typedef struct s_fdf

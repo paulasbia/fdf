@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 12:26:50 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 19:45:21 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,22 @@ void	check_av(int ac, char **av)
 
 int	deal_key(int key, t_map *fdf)
 {
-	if (key == K_ESC)
+	if (key == A_UP)
+		fdf->y_margin += 5;
+	else if (key == A_DOWN)
+		fdf->y_margin -= 5;
+	else if (key == A_RIGHT)
+		fdf->x_margin += 10;
+	else if (key == A_LEFT)
+		fdf->x_margin -= 10;
+	else if (key == K_ESC)
 	{
 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 		free(fdf->mlx_ptr);
 		exit(0);
 	}
+	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
+	draw_file(fdf);
 	return (0);
 }
 
@@ -48,21 +58,36 @@ void	free_matrix(t_map *fdf)
 	free(fdf);
 }
 
+// need change
+int	close_img(t_map *fdf)
+{
+	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	free(fdf->mlx_ptr);
+	exit(0);
+}
+
 int	main(int ac, char **av)
 {
 	t_map	*fdf;
 
 	check_av(ac, av);
 	fdf = (t_map *)malloc(sizeof(t_map));
-	if (!fdf)
+	fdf->img = malloc(sizeof(t_img));
+	if (!fdf || !fdf->img)
 		error();
 	read_maps(fdf, av[1]);
-
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
-	//	bresenham_line(10, 10, 600, 300, fdf);
-	//	bresenham_line((t_axis){x:2, y:1, x1:100, y1:200}, fdf);
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"FDF");
+	if (fdf->win_ptr == NULL)
+	{
+		free(fdf->win_ptr);
+		error ();
+	}
+	fdf->x_margin = 450;
+	fdf->y_margin = 5;
 	draw_file(fdf);
-	mlx_key_hook(fdf->win_ptr, &deal_key, fdf);
+	mlx_key_hook(fdf->win_ptr, deal_key, fdf);
+	mlx_hook(fdf->win_ptr, 17, 0L, close_img, fdf);
 	mlx_loop(fdf->mlx_ptr);
 }

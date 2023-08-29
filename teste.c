@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:11:56 by paula             #+#    #+#             */
-/*   Updated: 2023/08/25 12:11:13 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 19:22:12 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ int	main(void)
 			"my window");
 	if (data.win_ptr == NULL)
 	{
-		free(data.win_ptr);
+		free(data.win_ptr);	
 		return (MLX_ERROR);
 	}
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);

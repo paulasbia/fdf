@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 10:13:27 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 12:26:50 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ void	check_av(int ac, char **av)
 		exit_error("ERROR - Please enter whith one, and just one, argument\n");
 }
 
-int	deal_key(int key, void *data)
+int	deal_key(int key, t_map *fdf)
 {
-	ft_printf("%d", key);
+	if (key == K_ESC)
+	{
+		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+		free(fdf->mlx_ptr);
+		exit(0);
+	}
 	return (0);
 }
 
@@ -58,6 +63,6 @@ int	main(int ac, char **av)
 	//	bresenham_line(10, 10, 600, 300, fdf);
 	//	bresenham_line((t_axis){x:2, y:1, x1:100, y1:200}, fdf);
 	draw_file(fdf);
-	mlx_key_hook(fdf->win_ptr, deal_key, NULL);
+	mlx_key_hook(fdf->win_ptr, &deal_key, fdf);
 	mlx_loop(fdf->mlx_ptr);
 }

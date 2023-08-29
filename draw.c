@@ -6,12 +6,11 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/08/29 11:19:14 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 12:30:23 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
-
 
 int	max(float x, float y)
 {
@@ -31,8 +30,8 @@ float	mod(float i)
 
 void	put_3d(float *x, float *y, int *z)
 {
-	*x = (*x - *y) * cos(0.7);
-	*y = (*x + *y) * sin(0.7) - *z;
+	*x = (*x - *y) * cos(0.54);
+	*y = (*x + *y) * sin(0.54) - *z;
 }
 
 void	bresenham_line(t_axis axis, t_map *fdf)
@@ -43,16 +42,7 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 
 	axis.z = fdf->z_matrix[(int)axis.y][(int)axis.x];
 	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1];
-	
-	axis.x *= fdf->x_scale;
-	axis.x1 *= fdf->x_scale;
-	axis.y *= fdf->y_scale;
-	axis.y1 *= fdf->y_scale;
-
-	axis.x += fdf->x_margin;
-	axis.x1 += fdf->x_margin;
-	axis.y += fdf->y_margin;
-	axis.y1 += fdf->y_margin;
+	set_start(&axis, fdf);
 	if (axis.z > 0 || axis.z1 > 0)
 		fdf->color = RED_PIXEL;
 	else

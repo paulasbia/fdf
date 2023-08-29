@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRCS = fdf.c error.c read_map.c draw.c
+SRCS = fdf.c error.c read_map.c draw.c set_start.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -9,7 +9,6 @@ FLAGS = #-Wall -Wextra -Werror -g #-fsanitize=address
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m
 COLOUR_END=\033[0m
-
 
 ifeq ($(shell uname), Linux)
 	INCLUDES = -I/usr/include -Imlx_linux
@@ -67,7 +66,6 @@ fclean: clean
 re:			fclean all
 
 valgrind: clean fclean all
-	valgrind --leak-check=full ./fdf ./maps/42maps/basictest.fdf 
-	valgrind --leak-check=full ./fdf ./maps/42maps/plat.fdf 
+	valgrind --leak-check=full ./fdf ./maps/42maps/42.fdf 
 
 .PHONY: all clean fclean re 

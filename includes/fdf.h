@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 11:05:31 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 12:17:17 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@
 # define WHITE_PIXEL 0xFFFFFF
 
 // MAC KEYS
-# define K_ESC 53
-# define K_UP 13
-# define K_LEFT 0
-# define K_RIGHT 2
-# define K_DOWN 1
-# define A_UP 0x7E
-# define A_DOWN 0x7D
-# define A_LEFT 0x7B
-# define A_RIGHT 0x7C
+// # define K_ESC 53
+// # define K_UP 13
+// # define K_LEFT 0
+// # define K_RIGHT 2
+// # define K_DOWN 1
+// # define A_UP 0x7E
+// # define A_DOWN 0x7D
+// # define A_LEFT 0x7B
+// # define A_RIGHT 0x7C
 
 /* LINUX KEYS */
-/* #define K_ESC                65307
+# define K_ESC                	65307
 # define K_UP                    119
 # define K_LEFT                  97
 # define K_RIGHT                 100
@@ -49,7 +49,7 @@
 # define A_DOWN                  65364
 # define A_LEFT                  65361
 # define A_RIGHT                 65363
-*/
+
 
 // structs
 
@@ -97,5 +97,6 @@ int			get_width(char *file);
 int			get_height(char *file);
 void		bresenham_line(t_axis axis, t_map *fdf);
 void		draw_file(t_map *fdf);
+void	set_start(t_axis *axis, t_map *fdf);
 
 #endif

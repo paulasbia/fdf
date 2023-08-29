@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 18:57:48 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 11:20:57 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,16 @@ int	get_height(char *file)
 
 	fd = open(file, O_RDONLY, 0777);
 	line = get_next_line(fd);
-	printf("em height linha:\n%s\n", line);
 	if (line == 0)
 		return (-1);
 	height = 0;
 	while (line)
 	{
 		height++;
-		printf("height: %d\n", height);
 		free(line);
 		line = get_next_line(fd);
-		printf("next line:\n%s\n", line);
 	}
 	close(fd);
-	printf("heigth %d\n", height);
 	return (height);
 }
 
@@ -60,7 +56,6 @@ void	fill_matrix(int *z_line, char *line)
 	i = 0;
 	while (num[i])
 	{
-		printf("em matrix line%d\n%s\n", i, num[i]);
 		z_line[i] = ft_atoi(num[i]);
 		free(num[i]);
 		i++;
@@ -96,4 +91,6 @@ void	read_maps(t_map *fdf, char *file)
 	close(fd);
 	fdf->x_scale = 0.5 * (WINDOW_WIDTH / fdf->width);
 	fdf->y_scale = 0.5 * (WINDOW_HEIGHT / fdf->heigth);
+	fdf->x_margin = 450;
+	fdf->y_margin = 5;
 }

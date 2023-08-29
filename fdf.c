@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 18:52:51 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 10:13:27 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,12 @@ int	main(int ac, char **av)
 {
 	t_map	*fdf;
 
-	//	t_axis	*axis;
-	// int		i;
-	// int		j;
 	check_av(ac, av);
 	fdf = (t_map *)malloc(sizeof(t_map));
-	//	axis = (t_axis *)malloc(sizeof(t_axis));
-	printf("sizeof de t_map eh: %ld\n", sizeof(t_map));
 	if (!fdf)
-	{
-		printf("deu ruim\n\n");
 		error();
-	}
 	read_maps(fdf, av[1]);
-	// i = 0;
-	// while (i < fdf->heigth)
-	// {
-	// 	j = 0;
-	// 	while (j < fdf->width)
-	// 	{
-	// 		ft_printf("%d ", fdf->z_matrix[i][j]);
-	// 		j++;
-	// 	}
-	// 	ft_printf("\n");
-	// 	i++;
-	// }
-	// free_matrix(fdf);
+
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	//	bresenham_line(10, 10, 600, 300, fdf);

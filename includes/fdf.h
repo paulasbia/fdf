@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/28 18:59:38 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 11:05:31 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_data
 	int		**z_matrix;
 	float	x_scale;
 	float	y_scale;
+	float	x_margin;
+	float	y_margin;
 	int		color;
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -82,6 +84,7 @@ typedef struct s_fdf
 	float	y;
 	float	y1;
 	int		z;
+	int		z1;
 }			t_axis;
 
 void		check_av(int ac, char **av);

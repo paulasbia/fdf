@@ -6,28 +6,45 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/08/31 11:11:59 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:10:08 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+void	ft_instruction(void)
+{
+	ft_printf(BLUE "------------------------------------------------------" 
+		RESET "\n" BLUE "│" MARGENTA "                " "CONTROLS INFORMATION" 
+		"                " BLUE "│" RESET "\n" BLUE 
+		"------------------------------------------------------" RESET "\n" 
+		BLUE "╔═══════════════════════════════════════════"
+		"═════════╗" RESET "\n" BLUE "║" MARGENTA 
+		"                     Translation                    " BLUE "║" 
+		RESET "\n" BLUE "║" GREEN "      UP ARROW  " YELLOW "    UP   " 
+		GREEN "     DOWN ARROW  " YELLOW " DOWN   " BLUE "  ║"
+		"\n" BLUE "║" GREEN "      RIGHT ARROW  " YELLOW " RIGHT   " 
+		GREEN "  LEFT ARROW  " YELLOW " LEFT " BLUE "    ║" RESET "\n" 
+		BLUE "╚════════════════════════════════════════════════════╝" 
+		RESET "\n");
+}
+
 void	init_img(t_map *fdf)
 {
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"FDF");
+			"FDF - by pde-souz");
 	if (fdf->win_ptr == NULL)
 	{
 		free(fdf->win_ptr);
-		error ();
+		error();
 	}
 	fdf->img->mlx_img = mlx_new_image(fdf->mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT);
 	fdf->img->addr = mlx_get_data_addr(fdf->img->mlx_img, &(fdf->img->bpp),
 			&(fdf->img->line_len), &(fdf->img->endian));
 	fdf->x_margin = 450;
-	fdf->y_margin = 5;
+	fdf->y_margin = -200;
 }
 
 void	set_start(t_axis *axis, t_map *fdf)

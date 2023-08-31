@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 11:11:54 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:03:53 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	get_height(char *file)
 	int		fd;
 
 	fd = open(file, O_RDONLY, 0777);
+	if (fd < 0)
+		error();
 	line = get_next_line(fd);
 	if (line == 0)
-		return (-1);
+		exit_error("Empty line\n");
 	height = 0;
 	while (line)
 	{
@@ -64,6 +66,19 @@ void	fill_matrix(int *z_line, char *line)
 	free(num);
 }
 
+void	pre_fill(t_map *fdf)
+{
+	int	i;
+
+	i = 0;
+	while (i < fdf->heigth)
+	{
+		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
+		if (!fdf->z_matrix)
+			error();
+	}
+}
+
 void	read_maps(t_map *fdf, char *file)
 {
 	char	*line;
@@ -75,11 +90,11 @@ void	read_maps(t_map *fdf, char *file)
 	if (!fdf->z_matrix)
 		error();
 	fd = open(file, O_RDONLY, 0);
+	if (fd < 0)
+		error();
 	line = get_next_line(fd);
 	fdf->width = ft_wordc(line, ' ');
-	i = 0;
-	while (i < fdf->heigth)
-		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
+	pre_fill(fdf);
 	i = 0;
 	while (line)
 	{

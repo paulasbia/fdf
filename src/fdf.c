@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 11:21:08 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:35:29 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int ac, char **av)
 	fdf->img = malloc(sizeof(t_img));
 	if (!fdf || !fdf->img)
 		error();
+	ft_instruction();
 	read_maps(fdf, av[1]);
 	init_img(fdf);
 	draw_file(fdf);

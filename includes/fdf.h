@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 10:35:05 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:05:16 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
 # define WHITE_PIXEL 0xFFFFFF
+
+# define GREEN 			"\033[0;32m"
+# define RED 			"\033[0;31m"
+# define YELLOW 		"\x1b[33m"
+# define BLUE 			"\x1b[34m"
+# define MARGENTA 		"\x1b[35m"
+# define RESET 			"\033[0m"
 
 // MAC KEYS
 // # define K_ESC 53
@@ -91,6 +98,9 @@ typedef struct s_fdf
 void		check_av(int ac, char **av);
 void		exit_error(const char *msg);
 void		error(void);
+void		ft_instruction(void);
+void		ft_instruction2(void);
+void		free_matrix(t_map *fdf);
 void		read_maps(t_map *fdf, char *file);
 void		fill_matrix(int *z_line, char *line);
 int			ft_wordc(const char *str, char c);

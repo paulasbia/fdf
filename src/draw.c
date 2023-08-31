@@ -6,7 +6,7 @@
 /*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/08/31 11:12:03 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:06:18 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1];
 	set_start(&axis, fdf);
 	if (axis.z > 0 || axis.z1 > 0)
-		fdf->color = RED_PIXEL;
+		fdf->color = GREEN_PIXEL;
 	else
 		fdf->color = WHITE_PIXEL;
 	put_3d(&axis.x, &axis.y, &axis.z);

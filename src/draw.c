@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/08/29 19:37:23 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/31 11:12:03 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "../includes/fdf.h"
 
 int	max(float x, float y)
 {
@@ -30,8 +30,8 @@ float	mod(float i)
 
 void	put_3d(float *x, float *y, int *z)
 {
-	*x = (*x - *y) * cos(0.4);
-	*y = (*x + *y) * sin(0.4) - *z;
+	*x = (*x - *y) * cos(0.8);
+	*y = (*x + *y) * sin(0.8) - *z;
 }
 
 void	bresenham_line(t_axis axis, t_map *fdf)
@@ -74,9 +74,11 @@ void	draw_file(t_map *fdf)
 		while (x < fdf->width)
 		{
 			if (x < fdf->width - 1)
-				bresenham_line((t_axis){x: x, y: y, x1: x + 1, y1: y}, fdf);
+				bresenham_line((t_axis){.x = x, .y = y, .x1 = x + 1, .y1 = y},
+					fdf);
 			if (y < fdf->heigth - 1)
-				bresenham_line((t_axis){x: x, y: y, x1: x, y1: y + 1}, fdf);
+				bresenham_line((t_axis){.x = x, .y = y, .x1 = x, .y1 = y + 1},
+					fdf);
 			x++;
 		}
 		y++;

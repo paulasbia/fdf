@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 18:52:07 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/31 10:35:05 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int			get_width(char *file);
 int			get_height(char *file);
 void		bresenham_line(t_axis axis, t_map *fdf);
 void		draw_file(t_map *fdf);
-void	set_start(t_axis *axis, t_map *fdf);
+void		set_start(t_axis *axis, t_map *fdf);
+void		init_img(t_map *fdf);
+int			deal_key(int key, t_map *fdf);
 
 #endif

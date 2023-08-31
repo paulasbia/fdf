@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paulabiazotto <paulabiazotto@student.42    +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:28:06 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/18 16:49:45 by paulabiazot      ###   ########.fr       */
+/*   Updated: 2023/08/31 11:12:13 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "../includes/fdf.h"
 
 void	exit_error(const char *msg)
 {

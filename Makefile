@@ -1,10 +1,10 @@
 NAME = fdf
 
-SRCS = fdf.c error.c read_map.c draw.c set_start.c
+SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c
 
 OBJS = ${SRCS:.c=.o}
 
-FLAGS = #-Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 COLOUR_GREEN=\033[32m
 COLOUR_RED=\033[31m
@@ -25,10 +25,6 @@ else
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
-#INCLUDES = -I/opt/X11/include -Imlx
-
-#MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-
 .c.o: %.o : %.c
 	@cc ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
@@ -42,14 +38,8 @@ install:
 check:
 	norminette $(SRCS)
 
-test: all
-	gcc -ggdb $(FLAGS) pipex.c utils.c error.c $(NAME) -o pipex.o
-
-run: all
-	./pipex
-
 ${NAME}: ${OBJS}
-	@echo "\033[33m----Compiling lib----"
+	@echo "$(COLOUR_GREEN)----Compiling lib----"
 	@make re -C ./libft
 	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
 	@echo "$(COLOUR_GREEN)fdf Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
@@ -57,12 +47,13 @@ ${NAME}: ${OBJS}
 clean:
 	@make clean -C ./libft
 	@rm -f ${OBJS}
+	@echo "$(COLOUR_RED)Deleting all objs! ⌐(ಠ۾ಠ)¬\n$(COLOUR_END)"
 
 fclean: clean
 	@make fclean -C ./libft
 	@rm -f ${NAME}
-	@echo "$(COLOUR_RED)Deleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n$(COLOUR_END)"
-
+	@clear
+	
 re:			fclean all
 
 valgrind: clean fclean all

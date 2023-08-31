@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/29 19:45:21 by paula            ###   ########.fr       */
+/*   Updated: 2023/08/29 19:54:45 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	check_av(int ac, char **av)
 
 int	deal_key(int key, t_map *fdf)
 {
+	printf("%d\n", key);
 	if (key == A_UP)
 		fdf->y_margin += 5;
 	else if (key == A_DOWN)
@@ -61,7 +62,12 @@ void	free_matrix(t_map *fdf)
 // need change
 int	close_img(t_map *fdf)
 {
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img->mlx_img);
+	printf("destruiu img\n");
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	printf("destruiu janela\n");
+	free(fdf->img);
+	mlx_destroy_display(fdf->mlx_ptr);
 	free(fdf->mlx_ptr);
 	exit(0);
 }
@@ -84,6 +90,10 @@ int	main(int ac, char **av)
 		free(fdf->win_ptr);
 		error ();
 	}
+	fdf->img->mlx_img = mlx_new_image(fdf->mlx_ptr, WINDOW_WIDTH,
+			WINDOW_HEIGHT);
+	fdf->img->addr = mlx_get_data_addr(fdf->img->mlx_img, &(fdf->img->bpp),
+			&(fdf->img->line_len), &(fdf->img->endian));
 	fdf->x_margin = 450;
 	fdf->y_margin = 5;
 	draw_file(fdf);

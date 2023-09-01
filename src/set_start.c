@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/08/31 16:10:08 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:56:49 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,23 @@ void	init_img(t_map *fdf)
 			WINDOW_HEIGHT);
 	fdf->img->addr = mlx_get_data_addr(fdf->img->mlx_img, &(fdf->img->bpp),
 			&(fdf->img->line_len), &(fdf->img->endian));
-	fdf->x_margin = 450;
-	fdf->y_margin = -200;
+	fdf->x_margin = (WINDOW_WIDTH / 2);
+	fdf->y_margin = (WINDOW_HEIGHT / 2);
+	fdf->angle = 0.523599;
+	fdf->x_scale = 0.54 * (WINDOW_WIDTH / fdf->width);
+	fdf->y_scale = 0.54 * (WINDOW_HEIGHT / fdf->heigth);
 }
 
 void	set_start(t_axis *axis, t_map *fdf)
 {
-	fdf->x_scale = 0.54 * (WINDOW_WIDTH / fdf->width);
-	fdf->y_scale = 0.54 * (WINDOW_HEIGHT / fdf->heigth);
+	// fdf->x_scale = 0.54 * (WINDOW_WIDTH / fdf->width);
+	// fdf->y_scale = 0.54 * (WINDOW_HEIGHT / fdf->heigth);
 	axis->x *= fdf->x_scale;
 	axis->x1 *= fdf->x_scale;
 	axis->y *= fdf->y_scale;
 	axis->y1 *= fdf->y_scale;
-	axis->x += fdf->x_margin;
-	axis->x1 += fdf->x_margin;
-	axis->y += fdf->y_margin;
-	axis->y1 += fdf->y_margin;
+	// axis->x += fdf->x_margin;
+	// axis->x1 += fdf->x_margin;
+	// axis->y += fdf->y_margin;
+	// axis->y1 += fdf->y_margin;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 16:05:16 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:07:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 //# include <stdlib.h>
 
 //	Screen Resolution
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 700
+# define WINDOW_WIDTH 1500
+# define WINDOW_HEIGHT 1000
 
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
@@ -49,10 +49,10 @@
 
 /* LINUX KEYS */
 # define K_ESC					65307
-# define K_UP                   119
-# define K_LEFT                 97
-# define K_RIGHT                100
-# define K_DOWN                 115
+# define W_UP                   119
+# define AA_LEFT                 97
+# define D_RIGHT                100
+# define S_DOWN                 115
 # define A_UP                   65362
 # define A_DOWN                 65364
 # define A_LEFT                 65361
@@ -79,6 +79,7 @@ typedef struct s_data
 	float	y_scale;
 	float	x_margin;
 	float	y_margin;
+	float	angle;
 	int		color;
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -110,6 +111,7 @@ void		bresenham_line(t_axis axis, t_map *fdf);
 void		draw_file(t_map *fdf);
 void		set_start(t_axis *axis, t_map *fdf);
 void		init_img(t_map *fdf);
-int			deal_key(int key, t_map *fdf);
+int			deal_key(int key, t_map *fdf, t_axis *axis);
+void		rotate(int key, t_map *fdf, t_axis *axis);
 
 #endif

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/08/31 12:06:18 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:51:36 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#define PI 3.141592654
 
 int	max(float x, float y)
 {
@@ -28,10 +29,11 @@ float	mod(float i)
 		return (i);
 }
 
-void	put_3d(float *x, float *y, int *z)
+static void	put_3d(float *x, float *y, int *z, t_map *fdf)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - *z;
+	(void)fdf;
+	*x = (*x - *y) * cos(fdf->angle);
+	*y = (*x + *y) * sin(fdf->angle) - *z;
 }
 
 void	bresenham_line(t_axis axis, t_map *fdf)
@@ -47,8 +49,12 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 		fdf->color = GREEN_PIXEL;
 	else
 		fdf->color = WHITE_PIXEL;
-	put_3d(&axis.x, &axis.y, &axis.z);
-	put_3d(&axis.x1, &axis.y1, &axis.z1);
+	put_3d(&axis.x, &axis.y, &axis.z, fdf);
+	put_3d(&axis.x1, &axis.y1, &axis.z1, fdf);
+	axis.x += fdf->x_margin;
+	axis.x1 += fdf->x_margin;
+	axis.y += fdf->y_margin;
+	axis.y1 += fdf->y_margin;
 	x_step = axis.x1 - axis.x;
 	y_step = axis.y1 - axis.y;
 	max_num = max(mod(x_step), mod(y_step));

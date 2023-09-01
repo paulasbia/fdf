@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 15:35:29 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:03:56 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ void	check_av(int ac, char **av)
 	}
 	else
 		exit_error("ERROR - Please enter whith one, and just one, argument\n");
+}
+
+void	init_img(t_map *fdf)
+{
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"FDF - by pde-souz");
+	if (fdf->win_ptr == NULL)
+	{
+		free(fdf->win_ptr);
+		error();
+	}
+	fdf->img->mlx_img = mlx_new_image(fdf->mlx_ptr, WINDOW_WIDTH,
+			WINDOW_HEIGHT);
+	fdf->img->addr = mlx_get_data_addr(fdf->img->mlx_img, &(fdf->img->bpp),
+			&(fdf->img->line_len), &(fdf->img->endian));
+	ft_param(fdf);
 }
 
 void	free_matrix(t_map *fdf)

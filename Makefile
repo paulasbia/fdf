@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c src/rotate.c
+SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c
 
 OBJS = ${SRCS:.c=.o}
 

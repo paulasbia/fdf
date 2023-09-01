@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/09/01 14:22:56 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/01 15:35:05 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,30 @@
 void	ft_instruction(void)
 {
 	ft_printf(BLUE "------------------------------------------------------" 
-		RESET "\n" BLUE "│" MARGENTA "                " "CONTROLS INFORMATION" 
-		"                " BLUE "│" RESET "\n" BLUE 
-		"------------------------------------------------------" RESET "\n" 
+		RESET "\n" BLUE "│" MARGENTA "                "
+		"CONTROLS INFORMATION" "                " BLUE "│" RESET "\n" BLUE 
+		"------------------------------------------------------" RESET "\n"
 		BLUE "╔═══════════════════════════════════════════"
 		"═════════╗" RESET "\n" BLUE "║" MARGENTA 
 		"                     Translation                    " BLUE "║" 
 		RESET "\n" BLUE "║" GREEN "      UP ARROW  " YELLOW "    UP   " 
 		GREEN "     DOWN ARROW  " YELLOW " DOWN   " BLUE "  ║"
 		"\n" BLUE "║" GREEN "      RIGHT ARROW  " YELLOW " RIGHT   " 
-		GREEN "  LEFT ARROW  " YELLOW " LEFT " BLUE "    ║" RESET "\n" 
-		BLUE "╚════════════════════════════════════════════════════╝" 
-		RESET "\n");
+		GREEN "  LEFT ARROW  " YELLOW " LEFT " BLUE "    ║" RESET BLUE "\n" 
+		BLUE "║" BLUE "                                                    ║"
+		"\n" BLUE "║" MARGENTA "                        Zoom                 "
+		BLUE "       ║" RESET "\n" BLUE "║" GREEN "     '+'  " YELLOW 
+		"    ZOOM IN   " GREEN "     '-'  " YELLOW " ZOOM OUT   " BLUE "      ║"
+		"\n" BLUE "║" GREEN "     'A'  " YELLOW " ZOOM IN SCALE   " 
+		GREEN "  'D'  " YELLOW " ZOOM OUT SCALE " BLUE "  ║" RESET "\n"
+		BLUE "║" RESET BLUE 
+		"                                                    ║"
+		"\n" BLUE "║" MARGENTA "                      Rotation               "
+		BLUE "       ║" RESET "\n" BLUE "║" GREEN "     'W'  " YELLOW 
+		"    ROT UP   " GREEN "      'S'  " YELLOW " ROT DOWN  " BLUE "       ║"
+		RESET "\n" 
+		BLUE "╚════════════════════════════════════════════════════╝" RESET 
+		"\n");
 }
 
 void	ft_param(t_map *fdf)
@@ -37,23 +49,6 @@ void	ft_param(t_map *fdf)
 	fdf->x_scale = 0.54 * (WINDOW_WIDTH / fdf->width);
 	fdf->y_scale = 0.54 * (WINDOW_HEIGHT / fdf->heigth);
 	fdf->z_scale = 1;
-}
-
-void	init_img(t_map *fdf)
-{
-	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"FDF - by pde-souz");
-	if (fdf->win_ptr == NULL)
-	{
-		free(fdf->win_ptr);
-		error();
-	}
-	fdf->img->mlx_img = mlx_new_image(fdf->mlx_ptr, WINDOW_WIDTH,
-			WINDOW_HEIGHT);
-	fdf->img->addr = mlx_get_data_addr(fdf->img->mlx_img, &(fdf->img->bpp),
-			&(fdf->img->line_len), &(fdf->img->endian));
-	ft_param(fdf);
 }
 
 void	set_start(t_axis *axis, t_map *fdf)
@@ -70,4 +65,14 @@ void	put_axis(t_axis *axis, t_map *fdf)
 	axis->x1 += fdf->x_margin;
 	axis->y += fdf->y_margin;
 	axis->y1 += fdf->y_margin;
+}
+
+void	set_color(t_axis *axis, t_map *fdf)
+{
+	if (axis->z > 0 || axis->z1 > 0)
+		fdf->color = GREEN_PIXEL;
+	else if (axis->z < 0 || axis->z1 < 0)
+		fdf->color = RED_PIXEL;
+	else
+		fdf->color = WHITE_PIXEL;
 }

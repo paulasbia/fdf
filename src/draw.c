@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/09/01 12:51:36 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/01 14:22:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ float	mod(float i)
 
 static void	put_3d(float *x, float *y, int *z, t_map *fdf)
 {
-	(void)fdf;
 	*x = (*x - *y) * cos(fdf->angle);
 	*y = (*x + *y) * sin(fdf->angle) - *z;
 }
@@ -42,8 +41,8 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 	float	y_step;
 	int		max_num;
 
-	axis.z = fdf->z_matrix[(int)axis.y][(int)axis.x];
-	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1];
+	axis.z = fdf->z_matrix[(int)axis.y][(int)axis.x] * fdf->z_scale;
+	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1] * fdf->z_scale;
 	set_start(&axis, fdf);
 	if (axis.z > 0 || axis.z1 > 0)
 		fdf->color = GREEN_PIXEL;
@@ -51,10 +50,7 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 		fdf->color = WHITE_PIXEL;
 	put_3d(&axis.x, &axis.y, &axis.z, fdf);
 	put_3d(&axis.x1, &axis.y1, &axis.z1, fdf);
-	axis.x += fdf->x_margin;
-	axis.x1 += fdf->x_margin;
-	axis.y += fdf->y_margin;
-	axis.y1 += fdf->y_margin;
+	put_axis(&axis, fdf);
 	x_step = axis.x1 - axis.x;
 	y_step = axis.y1 - axis.y;
 	max_num = max(mod(x_step), mod(y_step));

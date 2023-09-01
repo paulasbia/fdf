@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/01 11:07:42 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/01 14:35:44 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@
 # define A_DOWN                 65364
 # define A_LEFT                 65361
 # define A_RIGHT                65363
+# define PLUS					61
+# define MIN					45
 
 
 // structs
@@ -70,22 +72,6 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
-typedef struct s_data
-{
-	int		heigth;
-	int		width;
-	int		**z_matrix;
-	float	x_scale;
-	float	y_scale;
-	float	x_margin;
-	float	y_margin;
-	float	angle;
-	int		color;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	*img;
-}			t_map;
-
 typedef struct s_fdf
 {
 	float	x;
@@ -95,6 +81,23 @@ typedef struct s_fdf
 	int		z;
 	int		z1;
 }			t_axis;
+
+typedef struct s_data
+{
+	int		heigth;
+	int		width;
+	int		**z_matrix;
+	float	x_scale;
+	float	y_scale;
+	float	x_margin;
+	float	y_margin;
+	float	z_scale;
+	float	angle;
+	int		color;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	*img;
+}			t_map;
 
 void		check_av(int ac, char **av);
 void		exit_error(const char *msg);
@@ -110,8 +113,9 @@ int			get_height(char *file);
 void		bresenham_line(t_axis axis, t_map *fdf);
 void		draw_file(t_map *fdf);
 void		set_start(t_axis *axis, t_map *fdf);
+void		put_axis(t_axis *axis, t_map *fdf);
 void		init_img(t_map *fdf);
-int			deal_key(int key, t_map *fdf, t_axis *axis);
+int			deal_key(int key, t_map *fdf);
 void		rotate(int key, t_map *fdf, t_axis *axis);
 
 #endif

@@ -6,17 +6,14 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:26:02 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/09/01 12:55:10 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/01 14:53:43 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	deal_key(int key, t_map *fdf, t_axis *axis)
+static void	simple_move(int key, t_map *fdf)
 {
-	printf("%d\n", key);
-	if (key != 0)
-		(void)axis;
 	if (key == A_UP)
 		fdf->y_margin -= 10;
 	else if (key == A_DOWN)
@@ -25,19 +22,41 @@ int	deal_key(int key, t_map *fdf, t_axis *axis)
 		fdf->x_margin += 10;
 	else if (key == A_LEFT)
 		fdf->x_margin -= 10;
-	else if (key == 61)
+}
+
+static void	zoom_move(int key, t_map *fdf)
+{
+	if (key == PLUS)
 	{
 		fdf->x_scale += 1;
 		fdf->y_scale += 1;
 	}
-	else if (key == 45)
+	else if (key == MIN)
 	{
 		fdf->x_scale -= 1;
 		fdf->y_scale -= 1;
 	}
-	// else if (key == W_UP || key == S_DOWN)
-	// 	rotate(key, fdf, axis);
-	else if (key == K_ESC)
+	else if (key == D_RIGHT)
+	{
+		if (fdf->z_scale > -20)
+			fdf->z_scale -= 1.2 ;
+	}
+	else if (key == AA_LEFT)
+	{
+		if (fdf->z_scale < 20)
+			fdf->z_scale += 1.2;
+	}
+}
+
+int	deal_key(int key, t_map *fdf)
+{
+	simple_move(key, fdf);
+	zoom_move(key, fdf);
+	if (key == W_UP)
+		fdf->angle += 0.05;
+	else if (key == S_DOWN)
+		fdf->angle -= 0.05;
+	if (key == K_ESC)
 	{
 		mlx_destroy_image(fdf->mlx_ptr, fdf->img->mlx_img);
 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);

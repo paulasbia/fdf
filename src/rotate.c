@@ -6,13 +6,13 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:07:16 by paula             #+#    #+#             */
-/*   Updated: 2023/09/01 12:33:03 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/01 13:29:41 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*void	rotate(int key, t_map *fdf, t_axis *axis)
+void	rotate(int key, t_map *fdf, t_axis *axis)
 {
 	int mx;
 	int my;
@@ -45,4 +45,4 @@
 		axis->y1 = my + (axis->x1 - mx) * sin(angle_min) + (axis->y1 - my)
 			* cos(angle_min);
 	}
-}*/
+}

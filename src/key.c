@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:26:02 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/09/01 14:53:43 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/04 09:31:06 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,11 @@ int	deal_key(int key, t_map *fdf)
 	simple_move(key, fdf);
 	zoom_move(key, fdf);
 	if (key == W_UP)
-		fdf->angle += 0.05;
-	else if (key == S_DOWN)
 		fdf->angle -= 0.05;
-	if (key == K_ESC)
-	{
-		mlx_destroy_image(fdf->mlx_ptr, fdf->img->mlx_img);
-		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-		free(fdf->img);
-		mlx_destroy_display(fdf->mlx_ptr);
-		free(fdf->mlx_ptr);
-		free_matrix(fdf);
-		exit(0);
-	}
+	else if (key == S_DOWN)
+		fdf->angle += 0.05;
+	else if (key == K_ESC)
+		close_img(fdf);
 	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
 	draw_file(fdf);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/01 15:08:20 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/04 09:29:54 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void		set_start(t_axis *axis, t_map *fdf);
 void		set_color(t_axis *axis, t_map *fdf);
 void		put_axis(t_axis *axis, t_map *fdf);
 void		init_img(t_map *fdf);
+int			close_img(t_map *fdf);
 int			deal_key(int key, t_map *fdf);
 void		rotate(int key, t_map *fdf, t_axis *axis);
 

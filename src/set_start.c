@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/09/01 15:35:05 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/04 09:31:54 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_param(t_map *fdf)
 {
 	fdf->x_margin = (WINDOW_WIDTH / 2.5);
 	fdf->y_margin = (WINDOW_HEIGHT / 2.5);
-	fdf->angle = 0.523599;
+	fdf->angle = 0.54;
 	fdf->x_scale = 0.54 * (WINDOW_WIDTH / fdf->width);
 	fdf->y_scale = 0.54 * (WINDOW_HEIGHT / fdf->heigth);
 	fdf->z_scale = 1;

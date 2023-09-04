@@ -26,4 +26,6 @@ Refer to the [**subject of this project**](https://github.com/paulasbia/fdf/blob
 **
 [**2D Scaling Program in C**](https://www.thiyagaraaj.com/tutorials/computer-graphics-programs-using-c-programming/2d-animation-computer-graphics-programs/1-2d-scaling-program-using-c-programming)
 **
+[**Transformacoes geometricas**](http://wiki.icmc.usp.br/images/f/ff/TransfGeometricas3D.pdf)
+**
 [**3D Translation Program Using C Programming**](https://www.thiyagaraaj.com/tutorials/computer-graphics-programs-using-c-programming/8-3d-animation-computer-graphics-programs/1-3d-translation-program-using-c-programming)

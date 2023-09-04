@@ -18,6 +18,8 @@
 Refer to the [**subject of this project**](https://github.com/paulasbia/fdf/blob/main/en.subject_fdf.pdf)
 
 ## Study references
+[**MiniLibX Docs**](https://harm-smits.github.io/42docs/libs/minilibx)
+**
 [**Fundamental Graphics Functions**](https://www.thiyagaraaj.com/tutorials/computer-graphics-programs-using-c-programming/fundamental-graphics-functions)
 **
 [**Bresenham's Line Drawing Algorithm**](https://www.thiyagaraaj.com/tutorials/computer-graphics-programs-using-c-programming/3-bresenham-s-line-drawing-algorithm)

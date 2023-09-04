@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/09/01 14:59:51 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/04 13:22:56 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ float	mod(float i)
 
 static void	put_3d(float *x, float *y, int *z, t_map *fdf)
 {
-	*x = (*x - *y) * cos(fdf->angle);
-	*y = (*x + *y) * sin(fdf->angle) - *z;
+	*x = *x * cos(fdf->angle) - *y * cos(fdf->angle);
+	*y = (*x * sin(fdf->angle) + *y * sin(fdf->angle)) - *z;
 }
 
 void	bresenham_line(t_axis axis, t_map *fdf)

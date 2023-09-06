@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/04 09:29:54 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/06 11:01:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 //# include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 # include <math.h>
-
-//# include <stdio.h>
-//# include <stdlib.h>
 
 //	Screen Resolution
 # define WINDOW_WIDTH 1500
@@ -59,7 +56,6 @@
 # define A_RIGHT                65363
 # define PLUS					61
 # define MIN					45
-
 
 // structs
 
@@ -119,6 +115,5 @@ void		put_axis(t_axis *axis, t_map *fdf);
 void		init_img(t_map *fdf);
 int			close_img(t_map *fdf);
 int			deal_key(int key, t_map *fdf);
-void		rotate(int key, t_map *fdf, t_axis *axis);
 
 #endif

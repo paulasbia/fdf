@@ -1,3 +1,5 @@
+.SILENT:
+
 NAME = fdf
 
 SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c
@@ -41,6 +43,7 @@ check:
 ${NAME}: ${OBJS}
 	@echo "$(COLOUR_GREEN)----Compiling lib----"
 	@make re -C ./libft
+	@make -C ./mlx_linux
 	@cc $(FLAGS) $(OBJS) -Llibft -lft -o $(NAME) $(MLX_FLAGS)
 	@echo "$(COLOUR_GREEN)fdf Compiled! ᕦ$(COLOUR_RED)♥$(COLOUR_GREEN)_$(COLOUR_RED)♥$(COLOUR_GREEN)ᕤ\n$(COLOUR_END)"
 
@@ -57,6 +60,6 @@ fclean: clean
 re:			fclean all
 
 valgrind: clean fclean all
-	valgrind --leak-check=full ./fdf ./maps/42maps/42.fdf 
+	valgrind --leak-check=full ./fdf ./maps/my_teste/pde-souz.fdf
 
 .PHONY: all clean fclean re 

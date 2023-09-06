@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/01 15:03:56 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/06 11:06:33 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	check_av(int ac, char **av)
 	if (ac == 2)
 	{
 		if (ft_strncmp(&av[1][ft_strlen(av[1]) - 4], ".fdf", 4))
-			exit_error("[fdf] ERROR - Invalid file extension\n");
+			exit_error("Invalid extension, Ex:./fdf ./maps./42maps/42.fdf\n");
 	}
 	else
-		exit_error("ERROR - Please enter whith one, and just one, argument\n");
+		exit_error("Please enter whith one, and just one, argument!\n");
 }
 
 void	init_img(t_map *fdf)
@@ -74,9 +74,9 @@ int	main(int ac, char **av)
 	fdf->img = malloc(sizeof(t_img));
 	if (!fdf || !fdf->img)
 		error();
-	ft_instruction();
 	read_maps(fdf, av[1]);
 	init_img(fdf);
+	ft_instruction();
 	draw_file(fdf);
 	mlx_key_hook(fdf->win_ptr, deal_key, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0L, close_img, fdf);

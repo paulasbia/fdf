@@ -39,6 +39,7 @@ install:
 
 check:
 	norminette $(SRCS)
+	norminette ./includes/fdf.h
 
 ${NAME}: ${OBJS}
 	@echo "$(COLOUR_GREEN)----Compiling lib----"

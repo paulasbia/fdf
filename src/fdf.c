@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 17:55:22 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:46:24 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,15 @@ void	init_img(t_map *fdf)
 	ft_param(fdf);
 }
 
-void	free_matrix(t_map *fdf)
+void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	int	i;
+	char	*dest;
 
-	i = 0;
-	while (fdf->z_matrix[i])
+	if (y >= 0 && x >= 0 && y < WINDOW_HEIGHT && x < WINDOW_WIDTH)
 	{
-		free(fdf->color[i]);
-		free(fdf->z_matrix[i]);
-		i++;
+		dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		*(unsigned int *)dest = color;
 	}
-	free(fdf->z_matrix);
-	free(fdf->color);
-	free(fdf);
 }
 
 int	close_img(t_map *fdf)
@@ -80,7 +75,8 @@ int	main(int ac, char **av)
 	ft_instruction();
 	init_img(fdf);
 	draw_file(fdf);
-	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->mlx_img, 0, 0);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->mlx_img, 0,
+		0);
 	mlx_key_hook(fdf->win_ptr, deal_key, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0L, close_img, fdf);
 	mlx_loop(fdf->mlx_ptr);

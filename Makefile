@@ -2,7 +2,7 @@
 
 NAME = fdf
 
-SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c src/ft_atoi_base.c
+SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c src/ft_atoi_base.c src/free_functions.c 
 
 OBJS = ${SRCS:.c=.o}
 

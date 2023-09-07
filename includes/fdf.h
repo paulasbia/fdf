@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 18:03:36 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:46:57 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,18 @@ void		ft_instruction(void);
 void		ft_instruction2(void);
 void		ft_param(t_map *fdf);
 int			ft_atoi_base(const char *str, int base);
+void		ft_free_split(char **str);
 void		free_matrix(t_map *fdf);
 void		read_maps(t_map *fdf, char *file);
 void		fill_matrix(int *z_line, char *line, int *color);
 int			ft_wordc(const char *str, char c);
 int			get_width(char *file);
 int			get_height(char *file);
+void		ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		bresenham_line(t_axis axis, t_map *fdf);
 void		draw_file(t_map *fdf);
 void		set_start(t_axis *axis, t_map *fdf);
-void		set_color(t_axis *axis, t_map *fdf);
+int			set_color(int z_line, int color);
 void		put_axis(t_axis *axis, t_map *fdf);
 void		init_img(t_map *fdf);
 int			close_img(t_map *fdf);

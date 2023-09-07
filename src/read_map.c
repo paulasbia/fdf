@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 18:18:42 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:43:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,6 @@ int	ft_wordc(const char *str, char c)
 	return (count);
 }
 
-void	ft_free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 void	fill_matrix(int *z_line, char *line, int *color)
 {
 	char	**num;
@@ -77,14 +64,7 @@ void	fill_matrix(int *z_line, char *line, int *color)
 		if (components[1])
 			color[i] = ft_atoi_base(components[1], 16);
 		else
-		{
-			if (z_line[i] > 0 || z_line[i] > 0)
-				color[i] = GREEN_PIXEL;
-			else if (z_line[i] < 0 || z_line[i] < 0)
-				color[i] = RED_PIXEL;
-			else
-				color[i] = WHITE_PIXEL;
-		}
+			color[i] = set_color(z_line[i], color[i]);
 		free(num[i]);
 		ft_free_split(components);
 		i++;

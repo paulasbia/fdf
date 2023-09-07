@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/09/07 18:15:08 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:46:03 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,6 @@ static void	put_3d(float *x, float *y, int *z, t_map *fdf)
 	*y = (*x * sin(fdf->angle) + *y * sin(fdf->angle)) - *z;
 }
 
-void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dest;
-
-	if (y >= 0 && x >= 0 && y < WINDOW_HEIGHT && x < WINDOW_WIDTH)
-	{
-		dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		*(unsigned int *)dest = color;
-	}
-}
-
 void	bresenham_line(t_axis axis, t_map *fdf)
 {
 	float	x_step;
@@ -55,7 +44,6 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 	axis.z = fdf->z_matrix[(int)axis.y][(int)axis.x] * fdf->z_scale;
 	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1] * fdf->z_scale;
 	set_start(&axis, fdf);
-	//set_color(&axis, fdf);
 	put_3d(&axis.x, &axis.y, &axis.z, fdf);
 	put_3d(&axis.x1, &axis.y1, &axis.z1, fdf);
 	put_axis(&axis, fdf);
@@ -84,11 +72,11 @@ void	draw_file(t_map *fdf)
 		while (x < fdf->width)
 		{
 			if (x < fdf->width - 1)
-				bresenham_line((t_axis){.x = x, .y = y, .x1 = x + 1, .y1 = y, .color = fdf->color[y][x]},
-					fdf);
+				bresenham_line((t_axis){.x = x, .y = y, .x1 = x + 1, .y1 = y,
+					.color = fdf->color[y][x]}, fdf);
 			if (y < fdf->heigth - 1)
-				bresenham_line((t_axis){.x = x, .y = y, .x1 = x, .y1 = y + 1, .color = fdf->color[y][x]},
-					fdf);
+				bresenham_line((t_axis){.x = x, .y = y, .x1 = x, .y1 = y + 1,
+					.color = fdf->color[y][x]}, fdf);
 			x++;
 		}
 		y++;

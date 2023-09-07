@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/09/07 18:08:49 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:47:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ void	put_axis(t_axis *axis, t_map *fdf)
 	axis->y1 += fdf->y_margin;
 }
 
-// void	set_color(t_axis *axis, t_map *fdf)
-// {
-// 	if (axis->z > 0 || axis->z1 > 0)
-// 		fdf->color = GREEN_PIXEL;
-// 	else if (axis->z < 0 || axis->z1 < 0)
-// 		fdf->color = RED_PIXEL;
-// 	else
-// 		fdf->color = WHITE_PIXEL;
-// }
+int	set_color(int z_line, int color)
+{
+	if (z_line > 0)
+		color = GREEN_PIXEL;
+	else if (z_line < 0)
+		color = RED_PIXEL;
+	else
+		color = WHITE_PIXEL;
+	return (color);
+}

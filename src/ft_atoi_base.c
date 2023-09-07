@@ -12,35 +12,6 @@
 
 #include "../includes/fdf.h"
 
-static int	is_hex(const char *str);
-static int	ft_isspace(char c);
-static int	ft_atoi_base_aux(const char *str, int i, int base);
-
-int	ft_atoi_base(const char *str, int base)
-{
-	int	sign;
-	int	i;
-	int	result;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] && ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-')
-		sign = -sign;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (base == 16 && str[i] == '0' && str[i + 1] == 'x')
-		i += 2;
-	if (base == 16 && is_hex(str + i) == 0)
-		return (0);
-	result = ft_atoi_base_aux(str, i, base);
-	return (result * sign);
-}
-
 static int	ft_atoi_base_aux(const char *str, int i, int base)
 {
 	int	result;
@@ -85,4 +56,29 @@ static int	ft_isspace(char c)
 	if (c == 32 || (c >= 9 && c <= 13))
 		return (1);
 	return (0);
+}
+
+int	ft_atoi_base(const char *str, int base)
+{
+	int	sign;
+	int	i;
+	int	result;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
+		sign = -sign;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (base == 16 && str[i] == '0' && str[i + 1] == 'x')
+		i += 2;
+	if (base == 16 && is_hex(str + i) == 0)
+		return (0);
+	result = ft_atoi_base_aux(str, i, base);
+	return (result * sign);
 }

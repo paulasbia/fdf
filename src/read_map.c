@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/08/31 12:03:53 by pde-souz         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:23:07 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,33 @@ int	ft_wordc(const char *str, char c)
 	return (count);
 }
 
+void	ft_free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 void	fill_matrix(int *z_line, char *line)
 {
 	char	**num;
 	int		i;
+	char	**components;
 
 	num = ft_split(line, ' ');
 	i = 0;
 	while (num[i])
 	{
-		z_line[i] = ft_atoi(num[i]);
+		components = ft_split(num[i], ',');
+		z_line[i] = ft_atoi(components[0]);
 		free(num[i]);
+		ft_free_split(components);
 		i++;
 	}
 	free(line);

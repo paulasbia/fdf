@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 17:23:07 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:18:42 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_free_split(char **str)
 	free(str);
 }
 
-void	fill_matrix(int *z_line, char *line)
+void	fill_matrix(int *z_line, char *line, int *color)
 {
 	char	**num;
 	int		i;
@@ -74,6 +74,17 @@ void	fill_matrix(int *z_line, char *line)
 	{
 		components = ft_split(num[i], ',');
 		z_line[i] = ft_atoi(components[0]);
+		if (components[1])
+			color[i] = ft_atoi_base(components[1], 16);
+		else
+		{
+			if (z_line[i] > 0 || z_line[i] > 0)
+				color[i] = GREEN_PIXEL;
+			else if (z_line[i] < 0 || z_line[i] < 0)
+				color[i] = RED_PIXEL;
+			else
+				color[i] = WHITE_PIXEL;
+		}
 		free(num[i]);
 		ft_free_split(components);
 		i++;
@@ -89,9 +100,11 @@ void	pre_fill(t_map *fdf)
 	i = 0;
 	while (i < fdf->heigth)
 	{
-		fdf->z_matrix[i++] = (int *)malloc(sizeof(int) * (fdf->width + 1));
-		if (!fdf->z_matrix)
+		fdf->z_matrix[i] = (int *)malloc(sizeof(int) * (fdf->width + 1));
+		fdf->color[i] = (int *)malloc(sizeof(int) * (fdf->width + 1));
+		if (!fdf->z_matrix[i] || !fdf->color[i])
 			error();
+		i++;
 	}
 }
 
@@ -103,7 +116,8 @@ void	read_maps(t_map *fdf, char *file)
 
 	fdf->heigth = get_height(file);
 	fdf->z_matrix = (int **)malloc(sizeof(int *) * (fdf->heigth + 1));
-	if (!fdf->z_matrix)
+	fdf->color = (int **)malloc(sizeof(int *) * (fdf->heigth + 1));
+	if (!fdf->z_matrix || !fdf->color)
 		error();
 	fd = open(file, O_RDONLY, 0);
 	if (fd < 0)
@@ -114,7 +128,7 @@ void	read_maps(t_map *fdf, char *file)
 	i = 0;
 	while (line)
 	{
-		fill_matrix(fdf->z_matrix[i], line);
+		fill_matrix(fdf->z_matrix[i], line, fdf->color[i]);
 		line = get_next_line(fd);
 		i++;
 	}

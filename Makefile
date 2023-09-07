@@ -2,7 +2,7 @@
 
 NAME = fdf
 
-SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c
+SRCS = src/fdf.c src/error.c src/read_map.c src/draw.c src/set_start.c src/key.c src/ft_atoi_base.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -62,5 +62,8 @@ re:			fclean all
 
 valgrind: clean fclean all
 	valgrind --leak-check=full ./fdf ./maps/my_teste/pde-souz.fdf
+
+valgrind_c: clean fclean all
+	valgrind --leak-check=full ./fdf ./maps/./42maps/basictest.fdf
 
 .PHONY: all clean fclean re 

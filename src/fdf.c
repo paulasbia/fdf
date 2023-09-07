@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 16:28:32 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 17:55:22 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ void	free_matrix(t_map *fdf)
 	i = 0;
 	while (fdf->z_matrix[i])
 	{
+		free(fdf->color[i]);
 		free(fdf->z_matrix[i]);
 		i++;
 	}
 	free(fdf->z_matrix);
+	free(fdf->color);
 	free(fdf);
 }
 

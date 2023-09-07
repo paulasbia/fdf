@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/06 11:11:14 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 18:03:36 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_fdf
 	float	y1;
 	int		z;
 	int		z1;
+	int		color;
 }			t_axis;
 
 typedef struct s_data
@@ -89,7 +90,7 @@ typedef struct s_data
 	float	y_margin;
 	float	z_scale;
 	float	angle;
-	int		color;
+	int		**color;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
@@ -101,9 +102,10 @@ void		error(void);
 void		ft_instruction(void);
 void		ft_instruction2(void);
 void		ft_param(t_map *fdf);
+int			ft_atoi_base(const char *str, int base);
 void		free_matrix(t_map *fdf);
 void		read_maps(t_map *fdf, char *file);
-void		fill_matrix(int *z_line, char *line);
+void		fill_matrix(int *z_line, char *line, int *color);
 int			ft_wordc(const char *str, char c);
 int			get_width(char *file);
 int			get_height(char *file);

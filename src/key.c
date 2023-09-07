@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:26:02 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/09/04 13:18:09 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:44:29 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	zoom_move(int key, t_map *fdf)
 	else if (key == D_RIGHT)
 	{
 		if (fdf->z_scale > -20)
-			fdf->z_scale -= 1.2 ;
+			fdf->z_scale -= 1.2;
 	}
 	else if (key == AA_LEFT)
 	{
@@ -58,7 +58,10 @@ int	deal_key(int key, t_map *fdf)
 		fdf->angle += 0.05;
 	else if (key == K_ESC)
 		close_img(fdf);
-	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
+	ft_bzero(fdf->img->addr, (WINDOW_HEIGHT * WINDOW_WIDTH
+			* sizeof(fdf->img->bpp)));
 	draw_file(fdf);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->mlx_img, 0,
+		0);
 	return (0);
 }

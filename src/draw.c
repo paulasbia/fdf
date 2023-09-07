@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/09/04 13:22:56 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:30:15 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ static void	put_3d(float *x, float *y, int *z, t_map *fdf)
 	*y = (*x * sin(fdf->angle) + *y * sin(fdf->angle)) - *z;
 }
 
+void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dest;
+
+	if (y >= 0 && x >= 0 && y < WINDOW_HEIGHT && x < WINDOW_WIDTH)
+	{
+		dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		*(unsigned int *)dest = color;
+	}
+}
+
 void	bresenham_line(t_axis axis, t_map *fdf)
 {
 	float	x_step;
@@ -55,7 +66,7 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 	y_step /= max_num;
 	while ((int)(axis.x - axis.x1) || (int)(axis.y - axis.y1))
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, axis.x, axis.y, fdf->color);
+		ft_mlx_pixel_put(fdf->img, (int)axis.x, (int)axis.y, fdf->color);
 		axis.x += x_step;
 		axis.y += y_step;
 	}

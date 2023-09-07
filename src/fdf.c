@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:47:09 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/06 11:06:33 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:28:32 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ int	main(int ac, char **av)
 	if (!fdf || !fdf->img)
 		error();
 	read_maps(fdf, av[1]);
-	init_img(fdf);
 	ft_instruction();
+	init_img(fdf);
 	draw_file(fdf);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->mlx_img, 0, 0);
 	mlx_key_hook(fdf->win_ptr, deal_key, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0L, close_img, fdf);
 	mlx_loop(fdf->mlx_ptr);

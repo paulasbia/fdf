@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:26:02 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/09/07 16:44:29 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/07 19:10:59 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	zoom_move(int key, t_map *fdf)
 	else if (key == D_RIGHT)
 	{
 		if (fdf->z_scale > -20)
-			fdf->z_scale -= 1.2;
+			fdf->z_scale -= 0.5;
 	}
 	else if (key == AA_LEFT)
 	{
 		if (fdf->z_scale < 20)
-			fdf->z_scale += 1.2;
+			fdf->z_scale += 0.5;
 	}
 }
 

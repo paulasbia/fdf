@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:25 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 18:43:53 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:19:53 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	read_maps(t_map *fdf, char *file)
 	int		i;
 	int		fd;
 
+	fdf->is_3d = 0;
 	fdf->heigth = get_height(file);
 	fdf->z_matrix = (int **)malloc(sizeof(int *) * (fdf->heigth + 1));
 	fdf->color = (int **)malloc(sizeof(int *) * (fdf->heigth + 1));

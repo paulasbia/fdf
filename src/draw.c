@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 10:59:25 by paula             #+#    #+#             */
-/*   Updated: 2023/09/07 19:02:02 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:25:07 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ void	bresenham_line(t_axis axis, t_map *fdf)
 	axis.z = fdf->z_matrix[(int)axis.y][(int)axis.x] * fdf->z_scale;
 	axis.z1 = fdf->z_matrix[(int)axis.y1][(int)axis.x1] * fdf->z_scale;
 	set_start(&axis, fdf);
-	put_3d(&axis.x, &axis.y, &axis.z, fdf);
-	put_3d(&axis.x1, &axis.y1, &axis.z1, fdf);
+	if (fdf->is_3d)
+	{
+		put_3d(&axis.x, &axis.y, &axis.z, fdf);
+		put_3d(&axis.x1, &axis.y1, &axis.z1, fdf);
+	}
 	put_axis(&axis, fdf);
 	x_step = axis.x1 - axis.x;
 	y_step = axis.y1 - axis.y;

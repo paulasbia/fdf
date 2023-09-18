@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:48:43 by paulabiazot       #+#    #+#             */
-/*   Updated: 2023/09/07 18:46:57 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:19:09 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data
 	int		**color;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		is_3d;
 	t_img	*img;
 }			t_map;
 

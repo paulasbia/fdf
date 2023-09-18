@@ -6,11 +6,21 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:26:02 by pde-souz          #+#    #+#             */
-/*   Updated: 2023/09/07 19:10:59 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:26:02 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+static void	is_3d(int key, t_map *fdf)
+{
+	if (key == 112 && fdf->is_3d == 0)
+	{
+		fdf->is_3d = 1;
+	}
+	else if (key == 112 && fdf->is_3d != 0)
+		fdf->is_3d = 0;
+}
 
 static void	simple_move(int key, t_map *fdf)
 {
@@ -50,6 +60,7 @@ static void	zoom_move(int key, t_map *fdf)
 
 int	deal_key(int key, t_map *fdf)
 {
+	is_3d(key, fdf);
 	simple_move(key, fdf);
 	zoom_move(key, fdf);
 	if (key == W_UP)

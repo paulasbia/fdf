@@ -9,8 +9,8 @@
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/paulasbia/fdf?color=brightgreen" />
 </p>
 
-- Actual Status : in progress..
-- Result        : 
+- Actual Status : Concluded
+- Result        : 125%
 - Observations  : N.A
 
 ## About

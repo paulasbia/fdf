@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhogonca <jhogonca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: pde-souz <pde-souz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 17:01:22 by jhogonca          #+#    #+#             */
-/*   Updated: 2023/08/11 17:01:22 by jhogonca         ###   ########.fr       */
+/*   Created: 2023/09/19 10:04:49 by pde-souz          #+#    #+#             */
+/*   Updated: 2023/09/19 10:04:49 by pde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

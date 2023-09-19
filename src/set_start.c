@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:09:57 by paula             #+#    #+#             */
-/*   Updated: 2023/09/07 18:47:42 by paula            ###   ########.fr       */
+/*   Updated: 2023/09/19 07:53:15 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_instruction(void)
 {
 	ft_printf(BLUE "------------------------------------------------------" 
-		RESET "\n" BLUE "│" MARGENTA "                "
-		"CONTROLS INFORMATION" "                " BLUE "│" RESET "\n" BLUE 
-		"------------------------------------------------------" RESET "\n"
-		BLUE "╔═══════════════════════════════════════════"
+		RESET "\n" BLUE "│" MARGENTA "    "
+		"CONTROLS INFORMATION (Press 'P' to 2D or 3D)" "    " BLUE "│" RESET 
+		"\n" BLUE "------------------------------------------------------" RESET 
+		"\n" BLUE "╔═══════════════════════════════════════════"
 		"═════════╗" RESET "\n" BLUE "║" MARGENTA 
 		"                     Translation                    " BLUE "║" 
 		RESET "\n" BLUE "║" GREEN "      UP ARROW  " YELLOW "    UP   " 
